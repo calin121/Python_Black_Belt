@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Login/Registration</title>
+</head>
+<body>
+	<div class="register">
+		{% if messages %}
+			{% for message in messages %}
+				<p>{{message}}</p>
+			{% endfor %}
+		{% endif %}
+
+		<h1>Registration</h1>
+		<form class="" action="{% url 'users:register' %}" method="POST">
+			{% csrf_token %}
+			<table>
+				<tr>
+					<td>Name: </td>
+					<td><input type="text" name="name" value=""></td>
+				</tr>
+				<tr>
+					<td>Username: </td>
+					<td><input type="text" name="username" value=""></td>
+				</tr>
+				<tr>
+					<td>Password: </td>
+					<td><input type="password" name="password" value="password"></td>
+				</tr>
+				<tr>
+					<td>Confirm Password: </td>
+					<td><input type="password" name="confirm_password" value="password"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="submit" name="" value="Register"></td>
+				</tr>
+			</table>
+			<p>*Password must be at least 8 characters log</p>
+		</form>
+	</div>
+	<div class="login">
+		<h1>Login</h1>
+		<form class="" action="{% url 'users:login' %}" method="POST">
+			{% csrf_token %}
+			<table>
+				<tr>
+					<td>Username: </td>
+					<td><input type="text" name="username" value=""></td>
+				</tr>
+				<tr><td>Password: </td>
+					<td><input type="password" name="password" value="password"></td></tr>
+				<tr>
+					</td>
+					<td><input type="submit" name="" value="Login"></td>
+				</tr>
+			</table>
+			
+		</form>
+	</div>
+</body>
+</html>

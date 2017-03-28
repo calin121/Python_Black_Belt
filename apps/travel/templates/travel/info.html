@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		{% for item in items_list %}
+		<title>{{ item.product }}</title>
+		{% endfor %}
+		<style type="text/css">
+			.row1 {
+				background-color: #D3D3D3;
+			}
+			.head_row {
+				background: pink;
+			}
+			table {
+				border: 1px solid black;
+			}
+			h1 {
+				color: blue;
+			}
+			h2 {
+				color: #228B22;
+			}
+		</style>
+	</head>
+	<body>
+
+		<!-- Home / Logout link -->
+		<p><a href="{% url 'users:success' %}">Home</a> | <a href="{% url 'users:logout' %}">Logout</a></p>
+
+		<!-- Flash Messages -->
+		{% if messages %}
+			{% for message in messages %}
+				<p>{{message}}</p>
+			{% endfor %}
+		{% endif %}
+
+		<!-- Item name and information -->
+		{% for item in items_list %}
+		<h1>{{ item.destination }}</h1>
+			<ul>
+				<li>Planned By: {{item.creator.name}}</li>
+				<li>Description: {{item.description}}</li>
+				<li>Travel Date From: {{item.from_date}}</li>
+				<li>Travel Date To: {{item.to_date}}</li>
+			</ul>
+		
+		
+
+		<!-- Other users joining this trip -->
+		<h3>Other users joining the trip:</h3>
+			<table>
+				<tr class="head_row">
+					<th>Name</th>
+				</tr>
+				{% for x in item.all_lists.all %}
+				<tr class="{% cycle 'row1' 'row2' %}">
+					<td>{{x.name}}</td>
+				</tr>
+				{% endfor %}
+			</table>				
+		
+		{% endfor %}
+	</body>
+</html>

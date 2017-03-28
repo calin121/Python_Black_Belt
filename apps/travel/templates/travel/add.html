@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Add Plan</title>
+	</head>
+	<body>
+		<!-- Home / Logout link -->
+		<p><a href="{% url 'users:success' %}">Home</a> | <a href="{% url 'users:logout' %}">Logout</a></p>
+
+		<!-- Flash Messages -->
+		{% if messages %}
+			{% for message in messages %}
+				<p class="success">{{message}}</p>
+			{% endfor %}
+		{% endif %}
+
+		<!-- Form for creating a new wish list item -->
+		<h1>Add a Trip</h1>
+		<form class="add_item" action="{% url 'travel:add' %}" method="POST">
+			{% csrf_token %}
+			<table>
+				<tr>
+					<td><label>Destination:</label></td>
+					<td><input type="text" name="destination"></td>
+				</tr>
+				<tr>
+					<td><label>Description:</label></td>
+					<td><input type="text" name="description"></td>
+				</tr>
+			</table>
+			<table>
+				<tr>
+					<td><label>Travel Date From:</label></td>
+					<td><input type="date" name="from_date"></td>
+				</tr>
+				<tr>
+					<td><label>Travel Date To:</label></td>
+					<td><input type="date" name="to_date"></td>
+				</tr>
+			</table>
+				
+			<input type="submit" name="add" value="Add">
+				
+			
+		</form>
+	</body>
+</html>
